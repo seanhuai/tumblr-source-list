@@ -1,4 +1,4 @@
-# 0.170807.2
+# 0.170807.3
 from urllib import request
 import os
 import json
@@ -31,12 +31,11 @@ def picsUrl(pre,username):
     f.close
 
 def tumblr_pics(username,limit):
-    pages = int(limit)//20
+    pages = int(limit)-1
     if pages == 0:
         picsUrl(getSource(username,pages),username)
     else:
-        for i in range(0,(pages+1)):
-            #print(i)
+        for i in range(0,pages):
             picsUrl(getSource(username,i),username)
     print('download is finished')        
 
@@ -54,11 +53,10 @@ def videoUrl(pre,username):
     f.close
 
 def tumblr_video(username,limit):
-    pages = int(limit)//20
+    pages = int(limit)-1
     if pages == 0:
         videoUrl(getSource(username,pages,'video'),username)
     else:
-        for i in range(0,(pages+1)):
-            #print(i)
+        for i in range(0,pages):
             videoUrl(getSource(username,i,'video'),username)
     print('download is finished')    
