@@ -18,7 +18,9 @@ tumblr-source-list> python .\app.py username limit mediatype
 ```
 
 其中 username 为必填项，username 即用户二级域名，如 offo.tumblr.com，则用户名是 offo
+
 limit 为获取内容的页数，如赋值则取值，如未赋值默认值为 3
+
 mediatype 为获取内容的类型，仅限 `pics`、`video` 和 `both` 三种，如未赋值默认值为 `pics`
 
 示例：
@@ -40,12 +42,11 @@ tumblr-source-list> python .\app.py u44002 5 both
 ### 获取限制
 
 官方限制，每一认证密钥每小时访问次数仅限 1000 次，同一密钥同一天限制访问 5000 次。
+
 更换密钥，修改 getSource() key 变量值即可。
 
 ### 更新计划
 
 近期将发布工作在 Windows 平台的 exe 程序。
 
-下一版本计划：
-实现根据关键字搜索并获取内容
-实现多 key 负载均衡
+下一版本计划：实现根据关键字搜索并获取内容，实现多 key 负载均衡。
