@@ -7,9 +7,12 @@ import contextlib
 def getSource(username,pages,mediatype = 'photo'):
 
     key = 'AftvLjfZCBi2RoFDX4lzToNvuB4PhnEbymwBJPgK9BHqgh0ZsV'
+    host = 'localhost'
+    port = 1080
+
     url = 'http://api.tumblr.com/v2/blog/'+username+'.tumblr.com/posts/'+str(mediatype)+'?api_key='+key+'&offset='+str(pages*20)
 
-    proxy_handler = request.ProxyHandler({'http': 'http://localhost:1080/'})
+    proxy_handler = request.ProxyHandler({'http': 'http://'+host+':'+port+'/'})
     opener = request.build_opener(proxy_handler)
     connect = opener.open(url)
     r = connect.read() 
