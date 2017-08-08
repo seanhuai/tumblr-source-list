@@ -8,7 +8,7 @@ def getSource(username,pages,mediatype = 'photo'):
 
     key = 'AftvLjfZCBi2RoFDX4lzToNvuB4PhnEbymwBJPgK9BHqgh0ZsV'
     host = 'localhost'
-    port = 1080
+    port = '1080'
 
     url = 'http://api.tumblr.com/v2/blog/'+username+'.tumblr.com/posts/'+str(mediatype)+'?api_key='+key+'&offset='+str(pages*20)
 
