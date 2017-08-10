@@ -2,6 +2,8 @@
 
 一个简单的Tumblr资源工具，用于获取指定用户的图片或视频信息
 
+当前版本： 0.170811.1 S
+
 ### 工具下载
 
 克隆本仓库到本地 命令如下
@@ -13,31 +15,59 @@ git clone https://github.com/seanhuai/tumblr-source-list
 
 运行 app.py 文件，同时传递参数
 
+#### 用户模式
+
 ```
-tumblr-source-list> python .\app.py username limit mediatype
+tumblr-source-list> python .\app.py username username mediatype limit
 ```
 
-其中 username 为必填项，username 即用户二级域名，如 offo.tumblr.com，则用户名是 offo
-
-limit 为获取内容的页数，如赋值则取值，如未赋值默认值为 3
-
-mediatype 为获取内容的类型，仅限 `pics`、`video` 和 `both` 三种，如未赋值默认值为 `pics`
+`app.py username` 后接 用户名（即用户二级域名）、媒体类型（photo 或 video）和 获取内容页数。
 
 示例：
 
 ```
-tumblr-source-list> python .\app.py u44002 
+tumblr-source-list> python .\app.py username u44002 photo 3 
 ```
 
-本例获取 u44002 用户近期 3 页的图片内容
+本例获取 u44002 用户近 3 页的图片内容
 
 ```
-tumblr-source-list> python .\app.py u44002 5 both
+tumblr-source-list> python .\app.py username u44002 video 5 
 ```
 
-本例获取 u44002 用户近期 5 页的图片和视频内容
+本例获取 u44002 用户近 5 页的视频内容
 
 生成的列表文件位于用户同名文件夹，请使用下载工具完成下载
+
+#### 链接模式
+
+```
+tumblr-source-list> python .\app.py posturl url
+```
+
+`app.py posturl` 后接 内容所在网页地址。
+
+示例：
+
+```
+tumblr-source-list> python .\app.py posturl https://wsyghf.tumblr.com/post/150478441406/
+```
+
+本例获取 wsyghf 用户指定的图片内容
+
+![](http://68.media.tumblr.com/ad6ae078e300136120d1127c4e8c4b4a/tumblr_odkypczpCM1utv5hpo6_1280.jpg)
+
+```
+tumblr-source-list> python .\app.py posturl https://donshofer.tumblr.com/post/163730046536/
+```
+
+本例获取 donshofer 用户指定的图片内容
+
+![](https://68.media.tumblr.com/dad7984efd2c3bb47ccd088c2556edf6/tumblr_ou2wjnqOFS1rjk2kao3_1280.jpg)
+
+两例均为图片，视频为同样使用方法。
+
+生成的列表文件位于用户同名文件夹，请使用下载工具完成下载。
 
 ### 代理设置
 
@@ -45,13 +75,13 @@ tumblr-source-list> python .\app.py u44002 5 both
 
 默认设置代理为监听本地 1080 端口，适用 Shadowsocks 用户。
 
-更改代理设置，修改 getSource() host/port 变量值即可。
+更改代理设置，修改 packages/_profiles.py host/port 变量值即可。
 
 ### 获取限制
 
 官方限制，每一认证密钥每小时访问次数仅限 1000 次，同一密钥同一天限制访问 5000 次。
 
-更换密钥，修改 getSource() key 变量值即可。
+更换密钥，或设置备用密钥，修改 packages/_profiles.py api 变量值（组）即可。
 
 ### 更新计划
 
