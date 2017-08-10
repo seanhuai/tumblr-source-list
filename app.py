@@ -1,30 +1,18 @@
-# 0.170807.3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import sys
-from funcs import tumblr_pics
-from funcs import tumblr_video
+from packages._funcs import *
 
-def getlist(args):
-    
-    username = args[1]
-    if len(args) == 4:
-        limit = args[2]
-        mediatype = args[3]
-    elif len(args) == 3:
-        limit = args[2]
-        mediatype = 'pics'
-    elif len(args) == 2:
-        limit = 3
-        mediatype = 'pics'
-
-    if mediatype == 'pics':
-        tumblr_pics(username,limit)
-    elif mediatype == 'video':
-        tumblr_video(username,limit)
-    elif mediatype == 'both':
-        tumblr_pics(username,limit)  
-        tumblr_video(username,limit)
+def selectfunc(args):
+    if args[1] == 'username':
+        username_list(args[2],args[3],args[4])
+    elif args[1] == 'posturl':
+        posturl_list(args[2])
+    elif args[1] == 'tags':
+        pass
     else:
-        print("参数有误")
+        print('参数有误')
 
 args = sys.argv
-getlist(args)
+selectfunc(args)
