@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from packages._proxy import *
 from packages._url import *
 from packages._username import *
