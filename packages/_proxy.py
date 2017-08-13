@@ -15,7 +15,7 @@ class Proxy():
         proxy_handler = request.ProxyHandler({'http': 'http://'+self.hostname+':'+self.port+'/'})
         opener = request.build_opener(proxy_handler)
         connect = opener.open(self.url)
-        r = connect.read() 
+        r = connect.read().decode()
         res = json.loads(r)
         self.res = res
 
