@@ -12,7 +12,7 @@ class Url():
         self.limit = limit
 
     def getReqUrl(self):
-        url = 'http://api.tumblr.com/v2/blog/'+ self.username +'.tumblr.com/posts/'+ self.mediatype +'?api_key='+ self.api +'&offset='+ self.limit
+        url = 'http://api.tumblr.com/v2/blog/{username}.tumblr.com/posts/{mediatype}?api_key={api}&offset={limit}'.format(username = self.username, mediatype = self.mediatype, api = self.api, limit = int(self.limit)*20)
         return url
 
     def setPostUrl(self,posturl):
@@ -23,5 +23,5 @@ class Url():
         postdetail = posturl.split('/')
         self.domain = postdetail[2]
         self.postid = postdetail[4]
-        url = 'http://api.tumblr.com/v2/blog/'+ self.domain +'/posts?id='+ self.postid +'&api_key='+ self.api
+        url = 'http://api.tumblr.com/v2/blog/{domain}/posts?id={postid}&api_key={api}'.format(domain = self.domain, postid = self.postid, api = self.api)
         return url

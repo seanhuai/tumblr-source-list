@@ -12,12 +12,16 @@ class Proxy():
         self.setProxy()
 
     def setProxy(self):
-        proxy_handler = request.ProxyHandler({'http': 'http://'+self.hostname+':'+self.port+'/'})
+        proxy_handler = request.ProxyHandler({'http': 'http://{hostname}:{port}/'.format(hostname = self.hostname, port = self.port)})
         opener = request.build_opener(proxy_handler)
-        connect = opener.open(self.url)
-        r = connect.read().decode()
-        res = json.loads(r)
-        self.res = res
+        try:
+            connect = opener.open(self.url)
+            r = connect.read().decode()
+            res = json.loads(r)
+        except BaseException as e:
+            print(e)
+        else:
+            self.res = res
 
     def getResult(self):
         return self.res

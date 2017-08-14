@@ -2,26 +2,34 @@
 
 from packages._proxy import *
 from packages._url import *
-from packages._username import *
-from packages._posturl import *
+from packages._Base import *
+from packages._mode import *
 from packages._tags import *
 from packages._profiles import *
 
-apinum = 0
 
-def username_list(username,mediatype,limit):
+def username_list(username,mediatype,limit,apinum = 0):
     u = Url()
-    u.setAPI(api[apinum])
     u.setUserName(username)
     u.setMediaType(mediatype)
-    u.setLimit(limit)
-    p = Proxy(hostname,port,u.getReqUrl())
-    Username(username,mediatype,p.getResult()) 
+    u.setAPI(api[apinum])
+    resg = []
+    for limit in range(int(limit)):
+        u.setLimit(limit)
+        print(limit)
+        p = Proxy(hostname,port,u.getReqUrl())
+        un = Username([username,mediatype,p.getResult()])
+        un.getSource(u.limit)
+        resg.extend(un.res)
+    un.checkAdult(resg)
 
-def posturl_list(url):
+def posturl_list(url,apinum = 0):
     u = Url()
     u.setAPI(api[apinum])    
     u.setPostUrl(url)
     p = Proxy(hostname,port,u.getPostUrl())
-    Posturl(p.getResult())
+    pu = Posturl([p.getResult(),u.postid])
+    res = []
+    pu.getSource()
+    pu.checkAdult(pu.res)
     
