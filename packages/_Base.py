@@ -14,12 +14,10 @@ class Base:
         for x in posts:
             if mediatype == 'photo':
                 for y in x['photos']:                 
-                    z.append(y['original_size']['url'])
+                    res.append(y['original_size']['url'])
             else:
                 if x['video_type'] == 'tumblr':
-                    z.append(x['video_url'])
-            if not z in res:
-                res.extend(z)
+                    res.append(x['video_url'])
         self.res = res
     
     def checkAdult(self,res):

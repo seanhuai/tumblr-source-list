@@ -16,7 +16,6 @@ def username_list(username,mediatype,limit,apinum = 0):
     resg = []
     for limit in range(int(limit)):
         u.setLimit(limit)
-        print(limit)
         p = Proxy(hostname,port,u.getReqUrl())
         un = Username([username,mediatype,p.getResult()])
         un.getSource(u.limit)
